@@ -19,7 +19,7 @@ const AuthFlow = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [userID, setUserID] = useState("");
-
+  const [clicked, setClicked] = useState(false);
   const isValidTezoEmail = (email) => {
     return email.toLowerCase().endsWith("@tezu.ac.in");
   };
@@ -144,9 +144,11 @@ const AuthFlow = () => {
                 type="email"
                 id="email"
                 value={authData.email}
-                onChange={(e) =>
-                  setAuthData({ ...authData, email: e.target.value })
-                }
+                onChange={(e) => {
+                  setAuthData({ ...authData, email: e.target.value });
+                  setClicked(true);
+                }}
+                onFocus={() => setClicked(true)}
                 placeholder="yourname@tezu.ac.in"
                 className="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
@@ -173,20 +175,22 @@ const AuthFlow = () => {
               />
             </div>
 
-            <Button
-              type="submit"
-              disabled={loading}
-              // className="w-full bg-blue-500 text-white py-2 mt-4 rounded-md hover:bg-blue-600 focus:outline-none disabled:bg-gray-400"
-              className="mx-auto w-full"
-            >
-              {loading
-                ? isLoginMode
-                  ? "Logging in..."
-                  : "Signing up..."
-                : isLoginMode
-                ? "Log In"
-                : "Sign Up"}
-            </Button>
+            {clicked && (
+              <Button
+                onClick={handleGoogleSignIn}
+                disabled={loading}
+                // className="w-full bg-blue-500 text-white py-2 mt-4 rounded-md hover:bg-blue-600 focus:outline-none disabled:bg-gray-400"
+                className="mx-auto w-full"
+              >
+                {loading
+                  ? isLoginMode
+                    ? "Logging in..."
+                    : "Signing up..."
+                  : isLoginMode
+                  ? "Log In"
+                  : "Sign Up"}
+              </Button>
+            )}
           </form>
         )}
 
