@@ -265,7 +265,7 @@ const CreateEventForm = () => {
             );
             setIsRegistered(response.data.exists);
             setUserID(response.data.userId);
-            localStorage.setItem("userId", response.data.userId);
+            localStorage.setItem("userID", response.data.userId);
             const usersResponse = await axios.get(
               "http://localhost:3001/api/auth/users"
             );

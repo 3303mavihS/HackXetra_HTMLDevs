@@ -25,8 +25,8 @@ import Createclub from "../components/Createclub";
 import Creategroup from "../components/Creategroup";
 import GroupClubList from "../components/GroupClubList";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import Post from "../components/Post";
-import PostFeed from "./PostFeed";
+// import Post from "../components/Post";
+import PostFeed from "@/components/Postfeed";
 
 const Dashboard = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
