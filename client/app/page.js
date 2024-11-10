@@ -49,7 +49,7 @@ const HomePage = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [allUserIds, setAllUserIds] = useState([]);
   const [userData, setUserData] = useState(null);
-  const userID = localStorage.getItem("userID");
+  const userID = localStorage.getItem("userId");
   const [data, setData] = useState({ groups: [], clubs: [] });
   const [error, setError] = useState(null);
   const [groupBar, setGroupBar] = useState(false);
@@ -60,20 +60,23 @@ const HomePage = () => {
   function generateRandomNumber(limit) {
     return Math.floor(Math.random() * limit);
   }
-
+  console.log(userID);
   // Fetch data from API
   // Fetch data from API
   const fetchData = async () => {
     try {
+      const url = `http://localhost:3001/api/user/${userID}/data`;
+      console.log(url);
       const response = await fetch(
         // "http://localhost:3001/api/user/ba22c7f8-dcbd-444b-96a3-d23648524e55/data"
-        "http://localhost:3001/api/user/" + userID + "/data"
+        url
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const result = await response.json();
       setData(result);
+      console.log(result);
     } catch (error) {
       setError(error.message);
     }

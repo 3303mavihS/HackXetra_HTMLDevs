@@ -24,7 +24,8 @@ const Creategroup = () => {
     setIsSubmitting(true);
 
     try {
-      const userId = localStorage.getItem("userID");
+      const userId = localStorage.getItem("userId");
+      console.log(userId);
       const response = await axios.post(
         "http://localhost:3001/api/groups/group/create",
         { ...formData, userId },
@@ -36,7 +37,8 @@ const Creategroup = () => {
       );
 
       if (response.status === 200) {
-        router.push("/"); // Redirect to a groups page or wherever appropriate
+        router.push("/");
+        alert("Group Created Successfully"); // Redirect to a groups page or wherever appropriate
       } else {
         alert(response.data.error || "Failed to create group");
       }

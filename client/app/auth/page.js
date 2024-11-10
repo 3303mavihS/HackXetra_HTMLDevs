@@ -104,6 +104,7 @@ const AuthFlow = () => {
     );
     if (response.data.exists) {
       localStorage.setItem("userID", response.data.userId);
+      localStorage.setItem("userId", response.data.userId);
       router.push("/");
     } else {
       const queryParams = new URLSearchParams({

@@ -6,6 +6,8 @@ const router = express.Router();
 router.get("/user/:userId/data", async (req, res) => {
   const { userId } = req.params;
 
+  console.log(userId);
+
   try {
     // Fetch clubs, groups, and posts of the user in one request
     const userData = await prisma.user.findUnique({
