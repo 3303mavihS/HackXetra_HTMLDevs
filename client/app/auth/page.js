@@ -175,22 +175,20 @@ const AuthFlow = () => {
               />
             </div>
 
-            {clicked && (
-              <Button
-                onClick={handleGoogleSignIn}
-                disabled={loading}
-                // className="w-full bg-blue-500 text-white py-2 mt-4 rounded-md hover:bg-blue-600 focus:outline-none disabled:bg-gray-400"
-                className="mx-auto w-full"
-              >
-                {loading
-                  ? isLoginMode
-                    ? "Logging in..."
-                    : "Signing up..."
-                  : isLoginMode
-                  ? "Log In"
-                  : "Sign Up"}
-              </Button>
-            )}
+            {clicked && <Button
+              onClick={handleGoogleSignIn}
+              disabled={loading}
+              // className="w-full bg-blue-500 text-white py-2 mt-4 rounded-md hover:bg-blue-600 focus:outline-none disabled:bg-gray-400"
+              className="mx-auto w-full"
+            >
+              {loading
+                ? isLoginMode
+                  ? "Logging in..."
+                  : "Signing up..."
+                : isLoginMode
+                ? "Log In"
+                : "Sign Up"}
+            </Button>}
           </form>
         )}
 
