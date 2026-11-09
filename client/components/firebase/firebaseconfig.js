@@ -4,16 +4,20 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// SECURITY FIX (CWE-798: Hardcoded Credentials)
+// The Firebase web API key was previously hardcoded here and committed to
+// git history. Although Firebase web API keys are designed to be public,
+// this key is now loaded from environment variables and should be ROTATED
+// in the Firebase console (with proper App Check / API restrictions) since
+// it was exposed in the repository. See client/.env.example.
 const firebaseConfig = {
-  apiKey: "AIzaSyC8An12gWXjPcoV8D73D3kM6UzLZD_wny8",
-  authDomain: "hackxetra.firebaseapp.com",
-  projectId: "hackxetra",
-  storageBucket: "hackxetra.firebasestorage.app",
-  messagingSenderId: "22094012938",
-  appId: "1:22094012938:web:19cf39cae9c48059a4b5f3",
-  measurementId: "G-Z4LE63CJ1Y"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
